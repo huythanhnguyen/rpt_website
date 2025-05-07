@@ -1,5 +1,6 @@
 <script setup>
 import { useLanguageStore } from '../stores/language.js';
+import agentDiagram from '../assets/agent2agent-diagram.png';
 
 // Get language store for translations
 const { t } = useLanguageStore();
@@ -160,7 +161,7 @@ const { t } = useLanguageStore();
         
         <div class="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
           <div>
-            <img src="/images/agent2agent-diagram.png" alt="Google AGENT2AGENT Diagram showing MCP and A2A technologies" class="rounded-xl shadow-lg w-full" />
+            <img :src="agentDiagram" alt="Google AGENT2AGENT Diagram showing MCP and A2A technologies" class="rounded-xl shadow-lg w-full" />
           </div>
           
           <div class="space-y-6">

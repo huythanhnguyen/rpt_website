@@ -32,7 +32,30 @@ export default defineConfig({
             purpose: 'any maskable'
           }
         ]
+      },
+      workbox: {
+        globDirectory: 'dist',
+        globPatterns: ['**/*.{js,css,html,ico,png,svg}'],
+        globIgnores: [
+          '**/node_modules/**/*',
+          'sw.js',
+          'workbox-*.js'
+        ],
+        swDest: 'dist/sw.js',
+        // Don't fallback on document based routing
+        navigateFallback: null
+      },
+      // Enable dev mode for better debugging
+      devOptions: {
+        enabled: true,
+        type: 'module'
       }
     })
-  ]
+  ],
+  // Ensure proper URL format for assets
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  }
 })

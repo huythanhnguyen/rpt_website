@@ -14,9 +14,8 @@ Website giới thiệu cho công ty RPT, chuyên xây dựng các AI Agent thế
 ```
 rpt_website/
 ├── public/             # Static assets
-│   └── images/         # Image assets
 ├── src/
-│   ├── assets/         # Project assets
+│   ├── assets/         # Project assets (images, fonts, etc.)
 │   ├── components/     # Vue components
 │   ├── stores/         # Pinia stores 
 │   ├── views/          # Page components
@@ -73,7 +72,18 @@ npm run preview
 
 1. Add the Google AGENT2AGENT diagram image:
    - Save the provided diagram image as `agent2agent-diagram.png` 
-   - Place it in the `public/images/` directory
+   - Place it in the `src/assets/` directory
+   - It's already imported and used in Home.vue
+
+2. Create and add PWA icons:
+   - Create the following icon files and place them in the `public/` directory:
+     - pwa-192x192.png (192x192 pixels)
+     - pwa-512x512.png (512x512 pixels)
+     - favicon.ico
+     - apple-touch-icon.png
+     - masked-icon.svg
+   - These are referenced in the vite.config.js for the PWA manifest
+   - Without these icons, the build process will fail
 
 ## Development
 
