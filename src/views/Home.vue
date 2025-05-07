@@ -28,20 +28,53 @@ const { t } = useLanguageStore();
               <div class="absolute -left-6 -top-6 w-24 h-24 bg-secondary-400 rounded-full opacity-20"></div>
               <div class="absolute -right-10 -bottom-10 w-32 h-32 bg-secondary-500 rounded-full opacity-20"></div>
               
-              <div class="relative bg-white rounded-2xl shadow-xl p-6 z-10">
-                <div class="flex items-center space-x-3 mb-6">
+              <!-- AI Agent Impersonation Panel -->
+              <div class="relative bg-gradient-to-b from-blue-900 to-purple-900 rounded-2xl shadow-xl p-6 z-10">
+                <div class="flex items-center space-x-3 mb-4">
                   <div class="w-3 h-3 rounded-full bg-red-500"></div>
                   <div class="w-3 h-3 rounded-full bg-yellow-500"></div>
                   <div class="w-3 h-3 rounded-full bg-green-500"></div>
                 </div>
                 
-                <div class="space-y-4">
-                  <div class="h-8 bg-gray-100 rounded"></div>
-                  <div class="h-32 bg-gray-100 rounded"></div>
-                  <div class="h-16 bg-gray-100 rounded"></div>
-                  <div class="grid grid-cols-2 gap-4">
-                    <div class="h-12 bg-secondary-100 rounded"></div>
-                    <div class="h-12 bg-primary-100 rounded"></div>
+                <!-- Impersonation Interface -->
+                <div class="flex flex-col items-center justify-between space-y-6 py-4">
+                  <!-- Primary AI Agent -->
+                  <div class="bg-blue-800/50 rounded-xl p-6 w-4/5 flex flex-col items-center">
+                    <div class="h-10 w-10 text-white mb-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0v-15A2.5 2.5 0 0 1 9.5 2Z"></path>
+                        <path d="M14.5 4A2.5 2.5 0 0 1 17 6.5v11a2.5 2.5 0 0 1-5 0v-11A2.5 2.5 0 0 1 14.5 4Z"></path>
+                        <path d="M19.5 7A2.5 2.5 0 0 1 22 9.5v5a2.5 2.5 0 0 1-5 0v-5A2.5 2.5 0 0 1 19.5 7Z"></path>
+                        <path d="M4.5 7A2.5 2.5 0 0 1 7 9.5v5a2.5 2.5 0 0 1-5 0v-5A2.5 2.5 0 0 1 4.5 7Z"></path>
+                      </svg>
+                    </div>
+                    <p class="text-center text-white text-base">AI Agent</p>
+                  </div>
+                  
+                  <!-- Connection Line with Shield -->
+                  <div class="h-32 flex flex-col items-center justify-between">
+                    <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                    <div class="w-[1.5px] h-14 bg-blue-400"></div>
+                    <div class="rounded-full bg-blue-900/90 p-2 border border-blue-500 flex items-center justify-center">
+                      <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-blue-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+                      </svg>
+                    </div>
+                    <div class="w-[1.5px] h-14 bg-blue-400"></div>
+                    <div class="w-2 h-2 rounded-full bg-blue-400"></div>
+                  </div>
+                  
+                  <!-- Target AI Agent -->
+                  <div class="border-2 border-dashed border-gray-500/40 rounded-xl p-6 w-4/5 flex flex-col items-center">
+                    <div class="h-10 w-10 text-gray-400 mb-1">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-5 0v-15A2.5 2.5 0 0 1 9.5 2Z"></path>
+                        <path d="M14.5 4A2.5 2.5 0 0 1 17 6.5v11a2.5 2.5 0 0 1-5 0v-11A2.5 2.5 0 0 1 14.5 4Z"></path>
+                        <path d="M19.5 7A2.5 2.5 0 0 1 22 9.5v5a2.5 2.5 0 0 1-5 0v-5A2.5 2.5 0 0 1 19.5 7Z"></path>
+                        <path d="M4.5 7A2.5 2.5 0 0 1 7 9.5v5a2.5 2.5 0 0 1-5 0v-5A2.5 2.5 0 0 1 4.5 7Z"></path>
+                      </svg>
+                    </div>
+                    <p class="text-center text-gray-300 text-base">Target AI Agent</p>
                   </div>
                 </div>
               </div>
