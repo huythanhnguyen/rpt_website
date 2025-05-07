@@ -38,6 +38,14 @@ const pinia = createPinia()
 
 // Create and mount app
 const app = createApp(App)
+
+// Set current language based on browser locale if not set already
+if (!localStorage.getItem('language')) {
+  const userLocale = navigator.language || navigator.userLanguage;
+  const lang = userLocale.startsWith('vi') ? 'vi' : 'en';
+  localStorage.setItem('language', lang);
+}
+
 app.use(router)
 app.use(pinia)
 app.mount('#app')
