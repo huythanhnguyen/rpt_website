@@ -1,11 +1,26 @@
 <script setup>
 import { useLanguageStore } from '../stores/language.js';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 const languageStore = useLanguageStore();
+const languageKey = ref(0);
+
+// Force component re-render when language changes
+const handleLanguageChange = () => {
+  languageKey.value++;
+};
+
+onMounted(() => {
+  document.addEventListener('language-changed', handleLanguageChange);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('language-changed', handleLanguageChange);
+});
 </script>
 
 <template>
-  <div class="language-switcher">
+  <div class="language-switcher" :key="languageKey">
     <button
       @click="languageStore.toggleLanguage"
       class="flex items-center space-x-1 p-2 rounded-md hover:bg-gray-100 transition-colors duration-200"

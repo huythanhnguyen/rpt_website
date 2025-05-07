@@ -14,6 +14,7 @@ Website giới thiệu cho công ty RPT, chuyên xây dựng các AI Agent thế
 ```
 rpt_website/
 ├── public/             # Static assets
+│   └── images/         # Image assets
 ├── src/
 │   ├── assets/         # Project assets
 │   ├── components/     # Vue components
@@ -67,3 +68,30 @@ npm run preview
 
 1. **Landing Page**: Giới thiệu về RPT, công nghệ A2A và MCP
 2. **Demo Page**: Demo tương tác với AI agent sử dụng công nghệ A2A
+
+## Required Manual Steps
+
+1. Add the Google AGENT2AGENT diagram image:
+   - Save the provided diagram image as `agent2agent-diagram.png` 
+   - Place it in the `public/images/` directory
+
+## Development
+
+```bash
+# Install dependencies
+npm install
+
+# Start development server
+npm run dev
+```
+
+## Project Structure
+
+The project follows Vue 3 + Vite structure with Tailwind CSS for styling.
+
+## Deployment
+
+```bash
+# Build for production
+npm run build
+```

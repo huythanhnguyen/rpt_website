@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, computed } from 'vue';
+import { ref, computed, watch } from 'vue';
 import en from '../locales/en.js';
 import vi from '../locales/vi.js';
 
@@ -30,6 +30,8 @@ export const useLanguageStore = defineStore('language', () => {
     if (languages[lang]) {
       currentLang.value = lang;
       localStorage.setItem('language', lang);
+      // Force UI update by dispatching a custom event
+      document.dispatchEvent(new CustomEvent('language-changed'));
     }
   }
 
@@ -37,6 +39,13 @@ export const useLanguageStore = defineStore('language', () => {
     const newLang = currentLang.value === 'en' ? 'vi' : 'en';
     setLanguage(newLang);
   }
+
+  // Watch for language changes from other tabs/windows
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'language' && event.newValue && event.newValue !== currentLang.value) {
+      currentLang.value = event.newValue;
+    }
+  });
   
   return { 
     currentLang, 

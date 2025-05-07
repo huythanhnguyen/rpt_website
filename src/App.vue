@@ -1,13 +1,36 @@
 <script setup>
 import { useLanguageStore } from './stores/language.js';
 import LanguageSwitcher from './components/LanguageSwitcher.vue';
+import { ref, onMounted, onUnmounted } from 'vue';
 
 // Get language store for translations
 const { t } = useLanguageStore();
+const appKey = ref(0);
+
+// Mobile menu state
+const isMobileMenuOpen = ref(false);
+
+// Toggle mobile menu
+const toggleMobileMenu = () => {
+  isMobileMenuOpen.value = !isMobileMenuOpen.value;
+};
+
+// Force component re-render when language changes
+const handleLanguageChange = () => {
+  appKey.value++;
+};
+
+onMounted(() => {
+  document.addEventListener('language-changed', handleLanguageChange);
+});
+
+onUnmounted(() => {
+  document.removeEventListener('language-changed', handleLanguageChange);
+});
 </script>
 
 <template>
-  <div class="app min-h-screen flex flex-col">
+  <div class="app min-h-screen flex flex-col" :key="appKey">
     <header class="bg-white shadow-sm sticky top-0 z-50">
       <div class="container-custom py-4 flex items-center justify-between">
         <router-link to="/" class="flex items-center space-x-2">
@@ -25,11 +48,23 @@ const { t } = useLanguageStore();
         <div class="flex items-center space-x-4">
           <LanguageSwitcher />
           <router-link to="/demo" class="btn-primary hidden md:block">{{ t.menu.tryDemo }}</router-link>
-          <button class="md:hidden p-2" aria-label="Menu">
+          <button @click="toggleMobileMenu" class="md:hidden p-2" aria-label="Menu">
             <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
             </svg>
           </button>
+        </div>
+      </div>
+      
+      <!-- Mobile menu -->
+      <div v-if="isMobileMenuOpen" class="md:hidden bg-white shadow-lg">
+        <div class="container-custom py-4 space-y-4">
+          <router-link @click="isMobileMenuOpen = false" to="/" class="block py-2 text-gray-600 hover:text-primary-700 font-medium">{{ t.menu.home }}</router-link>
+          <a @click="isMobileMenuOpen = false" href="/#about" class="block py-2 text-gray-600 hover:text-primary-700 font-medium">{{ t.menu.about }}</a>
+          <a @click="isMobileMenuOpen = false" href="/#solutions" class="block py-2 text-gray-600 hover:text-primary-700 font-medium">{{ t.menu.solutions }}</a>
+          <a @click="isMobileMenuOpen = false" href="/#technology" class="block py-2 text-gray-600 hover:text-primary-700 font-medium">{{ t.menu.technology }}</a>
+          <router-link @click="isMobileMenuOpen = false" to="/demo" class="block py-2 text-gray-600 hover:text-primary-700 font-medium">{{ t.menu.demo }}</router-link>
+          <router-link @click="isMobileMenuOpen = false" to="/demo" class="btn-primary inline-block">{{ t.menu.tryDemo }}</router-link>
         </div>
       </div>
     </header>
